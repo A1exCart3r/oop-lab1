@@ -2,42 +2,19 @@
 internal class Program
 {
     private static void Main(string[] args)
-    {        
-        string path = Directory.GetCurrentDirectory();
-        while (true)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("ФОРМАТ ФАЙЛА УКАЗЫВАТЬ НЕ НУЖНО");
-            Console.ResetColor();
-            Console.WriteLine("Назовите имя исходного текстового файла в директории с программой");
-            string firstFileName = Console.ReadLine() + ".txt";
-
-            Console.WriteLine("Назовите имя файла - копии");
-            string secondFileName = Console.ReadLine() + ".txt";
-
-            if ((File.Exists(secondFileName)))
+    {
+		try
+		{
+            if (!File.Exists(args[1]))
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Копия будет перезаписана при копировании.");
-                Console.ResetColor();
+                Console.WriteLine("Второго файла не существует, будет создан новый файл с этим именем.");
             }
-            try
-            {
-                File.Copy(firstFileName, secondFileName, true);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Файл успешно скопирован!");
-                Console.ResetColor();
-                Console.WriteLine("Нажмите любую кнопку для сброса...");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                Console.WriteLine("Исходный файл не был найден, проверьте имя и попробуйте еще раз.");
-                Console.WriteLine("Нажмите любую кнопку для сброса...");
-                Console.ReadKey();
-                Console.Clear();
-            }
+            File.Copy(args[0], args[1], true);
         }
+		catch (Exception)
+		{
+            Console.WriteLine("Ошибка, убедитесь в правильности введеных данных.");
+            throw;
+		}
     }
 }
