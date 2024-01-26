@@ -1,20 +1,25 @@
 ﻿using System.IO;
+using System.Runtime.ExceptionServices;
+
 internal class Program
 {
     private static void Main(string[] args)
     {
-		try
-		{
-            if (!File.Exists(args[1]))
-            {
-                Console.WriteLine("Второго файла не существует, будет создан новый файл с этим именем.");
-            }
-            File.Copy(args[0], args[1], true);
+        string firstFile = args[0];
+        string secondFile = args[1];
+        string readedtext;
+        try
+        {
+            StreamReader sr = new StreamReader(firstFile);
+            StreamWriter sw = new StreamWriter(secondFile);
+            readedtext = sr.ReadToEnd();
+            sw.Write(readedtext);
+            sr.Close();
+            sw.Close();
         }
-		catch (Exception)
-		{
-            Console.WriteLine("Ошибка, убедитесь в правильности введеных данных.");
-            throw;
-		}
+        catch (Exception)
+        {
+            Console.WriteLine("пошел нахер ошибка");
+        }
     }
 }
