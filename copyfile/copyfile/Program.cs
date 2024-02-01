@@ -1,25 +1,35 @@
-﻿using System.IO;
-using System.Runtime.ExceptionServices;
-
-internal class Program
+﻿internal class Program
 {
-    private static void Main(string[] args)
+    private static int Main(string[] args)
     {
+        if (args.Length != 2) 
+        {
+            Console.WriteLine("Нужно 2 аргумента для работы программы: имя исходного файла и имя выходного файла с указанием расширения.");
+            return 1;
+        }
+
         string firstFile = args[0];
         string secondFile = args[1];
-        string readedtext;
-        try
+        string readstring;
+
+        try 
         {
-            StreamReader sr = new StreamReader(firstFile);
-            StreamWriter sw = new StreamWriter(secondFile);
-            readedtext = sr.ReadToEnd();
-            sw.Write(readedtext);
-            sr.Close();
-            sw.Close();
+            using (StreamReader sr = new StreamReader(firstFile))
+            using (StreamWriter sw = new StreamWriter(secondFile))
+            { 
+                while (!sr.EndOfStream)
+                {
+                    readstring = sr.ReadLine();
+                    sw.WriteLine(readstring);
+                }
+            Console.WriteLine("Файл успешно скопирован");
+            return 0;
+            }
         }
         catch (Exception)
         {
-            Console.WriteLine("пошел нахер ошибка");
+            Console.WriteLine("Ошибка");
+            return 1;
         }
     }
 }
