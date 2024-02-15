@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "findtext": {
+      "commandName": "Project",
+      "commandLineArgs": "\"У лукоморья дуб зелёный (отрывок из поэмы «Руслан и Людмила»).txt\" \"кот\""
+    }
+  }
+}
