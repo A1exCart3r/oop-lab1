@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "compare": {
-      "commandName": "Project",
-      "commandLineArgs": "file1.txt file2.txt"
-    }
-  }
-}
