@@ -28,6 +28,10 @@ REM Ввод отсутствующего входного файла приве
 replace.exe "missingfile.txt" "file2.txt" "сс" "сссссс" && goto err
 echo Тест 7 пройден
 
+REM При входе пустого файла на выходе тоже будет пустой файл
+replace.exe "EmptyFile.txt" "file2.txt" "а" "Z" || goto err
+echo Тест 8 пройден
+
 echo Тесты пройдены
 exit /b 0
 
