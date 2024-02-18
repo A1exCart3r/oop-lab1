@@ -7,11 +7,10 @@
             Console.WriteLine("Неверное количество аргументов, введите аргументы в формате  join.exe <input file1> ... <input file N> <output file>");
             return 1;
         }
-
-        string outputFile = args[args.Length - 1]; 
-        
+    
         try
-        {
+        { 
+            string outputFile = args[args.Length - 1];
             using (FileStream output = new FileStream(outputFile, FileMode.Create))
             {
                 for (int i = 0; i < args.Length - 1; i++)
